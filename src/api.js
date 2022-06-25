@@ -1,8 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const errorMiddleware = require('./middlewares/error');
-const createCategoryController = require('./modules/Category/useCases');
-const createUserController = require('./modules/Users/useCases/CreateUser');
+const categoriesRouter = require('./routes/categories.routes');
+const usersRouter = require('./routes/users.routes');
 
 // ...
 
@@ -12,17 +12,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // ...
-app.post('/user', (req, res, next) => {
-  createUserController.handle(req, res, next);
-});
-
-app.post('/categories', (req, res, next) => {
-  createCategoryController.handle(req, res, next);
-});
-
-app.post('/categories', (req, res, next) => {
-  createCategoryController.handle(req, res, next);
-});
+app.use('/user', usersRouter);
+app.use('/categories', categoriesRouter);
 
 app.use(errorMiddleware);
 // É importante exportar a constante `app`,

@@ -1,15 +1,15 @@
 const Joi = require('joi');
 const AppError = require('../errors/AppError');
 
-const productSchema = Joi.object({
+const userSchema = Joi.object({
   displayName: Joi.string().min(8).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
   image: Joi.string(),
 });
 
-const validateUserBody = (req, res, next) => {
-  const { error } = productSchema.validate(req.body);
+const validateUserBody = (req, _res, next) => {
+  const { error } = userSchema.validate(req.body);
   if (error) throw new AppError(error.message);
   next();
 };

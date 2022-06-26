@@ -1,11 +1,12 @@
 const { Router } = require('express');
+const validateUserBody = require('../middlewares/validateUserBody');
 const createUserController = require('../modules/Users/useCases/CreateUser');
 const getUserController = require('../modules/Users/useCases/GetUser');
 const listUsersController = require('../modules/Users/useCases/ListUsers');
 
 const usersRouter = Router();
 
-usersRouter.post('/', (req, res, next) => {
+usersRouter.post('/', validateUserBody, (req, res, next) => {
   createUserController.handle(req, res, next);
 });
 

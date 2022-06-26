@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const createCategoryController = require('../modules/Category/useCases');
+const createCategoryController = require('../modules/Category/useCases/createCategory');
 
 const categoriesRouter = Router();
 

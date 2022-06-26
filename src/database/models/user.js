@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
+        autoIncrement: true,
       },
       displayName: DataTypes.STRING,
       email: DataTypes.STRING,
@@ -16,5 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
+  User.associate = (models) => {
+    User.hasMany(models.BlogPost, {
+      foreignKey: 'userId',
+    });
+  };
   return User;
 };

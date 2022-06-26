@@ -5,8 +5,8 @@ class CategoriesRepository {
     this.repository = Category;
   }
 
-  async create(categoryName) {
-    return this.repository.create(categoryName);
+  async create(category) {
+    return this.repository.create(category);
   }
 }
 

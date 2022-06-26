@@ -1,10 +1,9 @@
-// const CategoriesRepository = require('../repositories/CategoriesRepository');
-const inMemoryCategoriesRepo = require('../../repositories/InMemoryCategoriesRepository');
+const CategoriesRepository = require('../../repositories/CategoriesRepository');
 const CreateCategoryController = require('./CreateCategoryController');
 const CreateCategoryService = require('./CreateCategoryService');
 
-// const categoriesRepository = new CategoriesRepository();
-const createCategoryService = new CreateCategoryService(inMemoryCategoriesRepo);
+const categoriesRepository = new CategoriesRepository();
+const createCategoryService = new CreateCategoryService(categoriesRepository);
 const createCategoryController = new CreateCategoryController(
   createCategoryService,
 );

@@ -3,8 +3,8 @@ class CreateCategoryService {
     this.categoriesRepo = categoryRepo;
   }
 
-  async execute(categoryName) {
-    return this.categoriesRepo.create(categoryName);
+  async execute(category) {
+    return this.categoriesRepo.create(category);
   }
 }
 

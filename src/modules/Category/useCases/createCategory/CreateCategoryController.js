@@ -5,9 +5,7 @@ class CreateCategoryController {
 
   async handle(req, res, next) {
     try {
-      const newCategory = await this.createCategoryService.execute(
-        req.body.name,
-      );
+      const newCategory = await this.createCategoryService.execute(req.body);
       return res.status(201).json(newCategory);
     } catch (e) {
       next(e);

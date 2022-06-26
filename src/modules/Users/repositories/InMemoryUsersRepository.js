@@ -24,7 +24,6 @@ class InMemoryUsersRepository {
 
   async findByID(id) {
     const user = this.repository.find((e) => e.id === id);
-    delete user.password;
     return user;
   }
 }

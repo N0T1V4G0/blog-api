@@ -1,8 +1,9 @@
-const inMemoryUsersRepo = require('../../repositories/InMemoryUsersRepository');
+const UsersRepository = require('../../repositories/UsersRepository');
 const GetUserController = require('./GetUserController');
 const GetUserService = require('./GetUserService');
 
-const getUserService = new GetUserService(inMemoryUsersRepo);
+const usersRepository = new UsersRepository();
+const getUserService = new GetUserService(usersRepository);
 const getUserController = new GetUserController(getUserService);
 
 module.exports = getUserController;

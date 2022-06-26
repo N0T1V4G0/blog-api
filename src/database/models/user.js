@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       image: DataTypes.STRING,
     },
-    {},
+    {
+      timestamps: false,
+    },
   );
 
   User.associate = (models) => {

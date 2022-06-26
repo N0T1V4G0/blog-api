@@ -21,6 +21,12 @@ class InMemoryUsersRepository {
       return e;
     });
   }
+
+  async findByID(id) {
+    const user = this.repository.find((e) => e.id === id);
+    delete user.password;
+    return user;
+  }
 }
 
 const inMemoryUsersRepo = new InMemoryUsersRepository();

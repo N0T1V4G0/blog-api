@@ -16,7 +16,10 @@ class InMemoryUsersRepository {
   }
 
   async list() {
-    return this.repository;
+    return this.repository.map((e) => {
+      delete e.password;
+      return e;
+    });
   }
 }
 

@@ -20,6 +20,10 @@ class UsersRepository {
   async findByID(id) {
     return this.repository.findByPk(id);
   }
+
+  async getByEmailPassword({ email, password }) {
+    return this.repository.findOne({ where: { email, password } });
+  }
 }
 
 module.exports = UsersRepository;

@@ -6,7 +6,9 @@ class UsersRepository {
   }
 
   async create(user) {
-    return this.repository.create(user);
+    return this.repository.create(user, {
+      attributes: { exclude: ['password'] },
+    });
   }
 
   async findByEmail(email) {

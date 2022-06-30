@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       updated: DataTypes.DATE,
     },
     {
-      timestamps: false,
+      timestamps: true,
+      createdAt: 'published',
+      updatedAt: 'updated',
     },
   );
 

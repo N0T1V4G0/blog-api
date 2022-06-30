@@ -1,8 +1,11 @@
 const { Router } = require('express');
+const authMiddleware = require('../middlewares/auth');
+const createBlogPostController = require('../modules/BlogPosts/useCases/createBlogPost');
 
 const postRouter = Router();
 
-postRouter.use('/', (req, res, _next) =>
-  res.status(501).json({ message: 'not implemented' }));
+postRouter.use('/', authMiddleware, (req, res, next) => {
+  createBlogPostController.handle(req, res, next);
+});
 
 module.exports = postRouter;

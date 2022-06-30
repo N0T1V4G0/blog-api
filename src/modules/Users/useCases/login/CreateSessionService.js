@@ -16,7 +16,6 @@ class CreateSessionService {
   }
 
   generateToken({ password, ...userWithoutPass }) {
-    console.log(userWithoutPass);
     const jwtSecret = process.env.JWT_SECRET;
     const jwtConfig = { expiresIn: '1d', algorithm: 'HS256' };
     const token = jwt.sign({ data: { userWithoutPass } }, jwtSecret, jwtConfig);

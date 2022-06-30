@@ -14,15 +14,20 @@ class UsersRepository {
   }
 
   async list() {
-    return this.repository.findAll();
+    return this.repository.findAll({ attributes: { exclude: ['password'] } });
   }
 
   async findByID(id) {
-    return this.repository.findByPk(id);
+    return this.repository.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
   }
 
   async getByEmailPassword({ email, password }) {
-    return this.repository.findOne({ where: { email, password } });
+    return this.repository.findOne({
+      where: { email, password },
+      attributes: { exclude: ['password'] },
+    });
   }
 }
 

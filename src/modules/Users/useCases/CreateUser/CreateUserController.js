@@ -5,8 +5,8 @@ class CreateUserController {
 
   async handle(req, res, next) {
     try {
-      const newUser = await this.createUserService.execute(req.body);
-      return res.status(201).json(newUser);
+      const token = await this.createUserService.execute(req.body);
+      return res.status(201).json({ token });
     } catch (e) {
       next(e);
     }

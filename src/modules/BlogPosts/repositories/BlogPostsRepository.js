@@ -2,6 +2,7 @@ const db = require('../../../database/models');
 const { BlogPost } = require('../../../database/models');
 const { Category } = require('../../../database/models');
 const { PostCategory } = require('../../../database/models');
+const { User } = require('../../../database/models');
 const AppError = require('../../../errors/AppError');
 
 class BlogPostsRepository {
@@ -30,6 +31,24 @@ class BlogPostsRepository {
     });
 
     return post;
+  }
+
+  async list() {
+    const posts = await this.repository.findAll({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: { exclude: ['password'] },
+        },
+        {
+          model: Category,
+          as: 'categories',
+          through: { attributes: [] },
+        },
+      ],
+    });
+    return posts;
   }
 }
 

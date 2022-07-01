@@ -9,7 +9,7 @@ class CreateSessionService {
   async execute(loginData) {
     const user = await this.usersRepo.getByEmailPassword(loginData);
     if (!user) throw new AppError('Invalid fields');
-    const token = createTokenJWT(user);
+    const token = createTokenJWT(user.dataValues);
     return token;
   }
 }

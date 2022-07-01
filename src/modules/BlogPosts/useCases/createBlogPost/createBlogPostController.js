@@ -11,6 +11,7 @@ class CreateBlogPostController {
       if (!(title && content && categoryIds)) {
         throw new AppError('Some required fields are missing');
       }
+      req.body.userId = req.user.id;
       const newBlogPost = await this.createBlogPostService.execute(req.body);
       return res.status(201).json(newBlogPost);
     } catch (e) {

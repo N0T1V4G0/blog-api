@@ -11,7 +11,7 @@ const authMiddleware = async (req, _res, next) => {
 
     try {
       const decoded = jwt.verify(token, jwtSecret);
-      req.body.userId = decoded.data.userWithoutPass.id;
+      req.user = decoded.data;
     } catch (e) {
       throw new AppError('Expired or invalid token', 401);
     }

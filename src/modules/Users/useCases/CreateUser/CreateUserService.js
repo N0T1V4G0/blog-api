@@ -10,7 +10,7 @@ class CreateUserService {
     const userAlreadyExists = await this.userRepo.findByEmail(user.email);
     if (userAlreadyExists) throw new AppError('User already registered', 409);
     const userData = await this.userRepo.create(user);
-    const token = createTokenJWT(userData);
+    const token = createTokenJWT(userData.dataValues);
     return token;
   }
 }

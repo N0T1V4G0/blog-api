@@ -1,9 +1,16 @@
-const { BlogPost, Category, User } = require('../../../database/models');
+const {
+  BlogPost,
+  Category,
+  User,
+  PostCategory,
+} = require('../../../database/models');
 const AppError = require('../../../errors/AppError');
 
 class BlogPostsRepository {
   constructor() {
     this.repository = BlogPost;
+    this.category = Category;
+    this.postCategory = PostCategory;
   }
 
   async create(blogPost) {
@@ -60,6 +67,16 @@ class BlogPostsRepository {
       ],
     });
     return post;
+  }
+
+  async update({ title, content, id }) {
+    await this.repository.update(
+      { title, content },
+      {
+        where: { id },
+      },
+      { fields: ['title', 'content'] },
+    );
   }
 }
 

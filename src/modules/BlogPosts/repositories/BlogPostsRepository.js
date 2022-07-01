@@ -1,16 +1,9 @@
-const db = require('../../../database/models');
-const { BlogPost } = require('../../../database/models');
-const { Category } = require('../../../database/models');
-const { PostCategory } = require('../../../database/models');
-const { User } = require('../../../database/models');
+const { BlogPost, Category, User } = require('../../../database/models');
 const AppError = require('../../../errors/AppError');
 
 class BlogPostsRepository {
   constructor() {
     this.repository = BlogPost;
-    this.category = Category;
-    this.postCategory = PostCategory;
-    this.sequelize = db.sequelize;
   }
 
   async create(blogPost) {

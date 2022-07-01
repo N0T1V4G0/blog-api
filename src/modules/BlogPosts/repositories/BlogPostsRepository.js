@@ -50,6 +50,24 @@ class BlogPostsRepository {
     });
     return posts;
   }
+
+  async findByID(id) {
+    const post = await this.repository.findByPk(id, {
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: { exclude: ['password'] },
+        },
+        {
+          model: Category,
+          as: 'categories',
+          through: { attributes: [] },
+        },
+      ],
+    });
+    return post;
+  }
 }
 
 module.exports = BlogPostsRepository;

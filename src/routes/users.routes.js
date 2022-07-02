@@ -2,6 +2,7 @@ const { Router } = require('express');
 const authMiddleware = require('../middlewares/auth');
 const validateUserBody = require('../middlewares/validateUserBody');
 const createUserController = require('../modules/Users/useCases/CreateUser');
+const deleteMeController = require('../modules/Users/useCases/deleteMe');
 const getUserController = require('../modules/Users/useCases/GetUser');
 const listUsersController = require('../modules/Users/useCases/ListUsers');
 
@@ -17,6 +18,10 @@ usersRouter.get('/', authMiddleware, (req, res, next) => {
 
 usersRouter.get('/:id', authMiddleware, (req, res, next) => {
   getUserController.handle(req, res, next);
+});
+
+usersRouter.delete('/me', authMiddleware, (req, res, next) => {
+  deleteMeController.handle(req, res, next);
 });
 
 module.exports = usersRouter;

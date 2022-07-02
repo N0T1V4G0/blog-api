@@ -78,6 +78,10 @@ class BlogPostsRepository {
       { fields: ['title', 'content'] },
     );
   }
+
+  async delete(id) {
+    await this.repository.destroy({ where: { id } });
+  }
 }
 
 module.exports = BlogPostsRepository;

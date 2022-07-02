@@ -29,6 +29,10 @@ class UsersRepository {
       attributes: { exclude: ['password'] },
     });
   }
+
+  async delete(id) {
+    await this.repository.destroy({ where: { id } });
+  }
 }
 
 module.exports = UsersRepository;

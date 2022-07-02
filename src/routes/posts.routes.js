@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const authMiddleware = require('../middlewares/auth');
 const createBlogPostController = require('../modules/BlogPosts/useCases/createBlogPost');
+const deleteBlogPostController = require('../modules/BlogPosts/useCases/deleteBlogPost');
 const getPostController = require('../modules/BlogPosts/useCases/getPost');
 const listBlogPostsController = require('../modules/BlogPosts/useCases/listBlogPosts');
 const updatePostController = require('../modules/BlogPosts/useCases/updateBlogPost');
@@ -21,6 +22,10 @@ postRouter.get('/:id', authMiddleware, (req, res, next) => {
 
 postRouter.put('/:id', authMiddleware, (req, res, next) => {
   updatePostController.handle(req, res, next);
+});
+
+postRouter.delete('/:id', authMiddleware, (req, res, next) => {
+  deleteBlogPostController.handle(req, res, next);
 });
 
 module.exports = postRouter;
